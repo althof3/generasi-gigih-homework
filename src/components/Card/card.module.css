@@ -2,18 +2,13 @@
   font-weight: 500;
   background: #444444;
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
   padding: 1rem;
   border-radius: 0.3rem;
+  margin: 1rem;
   transition: all 0.25s ease-in-out;
 }
 
 .Card:hover {
   background: #4e4e4e;
-}
-
-.Card img {
-  border-radius: 0.3rem;
-  object-fit: contain;
-  width: inherit;
 }

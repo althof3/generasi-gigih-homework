@@ -1,0 +1,14 @@
+.Button {
+  background: #1DB954;
+  border-radius: .5rem;
+  border-style: none;
+  padding: .5rem .8rem;
+  cursor: pointer;
+  color: white;
+  text-transform: capitalize;
+  transition: all .3s ease-in-out;
+}
+
+.Button:hover{
+  background: #0e963e;
+}
