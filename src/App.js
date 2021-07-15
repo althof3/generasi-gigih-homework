@@ -1,12 +1,12 @@
-// import logo from './logo.svg';
+
 import "./App.css";
 import Card from "./components/Card";
-import data from "libs/single-sample";
+import data from "constants/single-sample";
 import TrackImage from "components/TrackImage";
 import TrackTitle from 'components/TrackTitle';
 import TrackArtist from "components/TrackArtist";
-import TrackAlbum from './components/TrackAlbum/index';
-import Button from './components/Button/index';
+import TrackAlbum from 'components/TrackAlbum';
+import Button from 'components/Button';
 
 function App() {
   const {
