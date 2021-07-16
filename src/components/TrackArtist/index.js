@@ -1,9 +1,7 @@
-const TrackArtist = ({children}) => {
-  return (
-    <div>
-      {children}
-    </div>
-  )
-}
+import Style from './style.module.css'
 
-export default TrackArtist
+const TrackArtist = ({ children, ...props }) => {
+  return <p className={Style.artistName} {...props}>{children}</p>;
+};
+
+export default TrackArtist;

@@ -1,9 +1,9 @@
-import Style from './style.module.css'
+import Style from "./style.module.css";
 
-const TrackImage = ({imageUrl}) => {
+const TrackImage = ({ imageUrl, ...props }) => {
   return (
-    <img className={Style.Image} src={imageUrl} alt="album card" />
-  )
-}
+    <img {...props} className={Style.Image} src={imageUrl} alt="album card" />
+  );
+};
 
-export default TrackImage
+export default TrackImage;

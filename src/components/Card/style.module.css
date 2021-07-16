@@ -1,14 +1,25 @@
 .Card {
   font-weight: 500;
   background: #444444;
-  width: 100%;
   max-width: 250px;
   padding: 1rem;
   border-radius: 0.3rem;
-  margin: 1rem;
+  margin: .5rem;
   transition: all 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .Card:hover {
   background: #4e4e4e;
+  transform: scale(1.02);
+}
+
+.Card p{
+  margin: .3rem 0;
+}
+
+.Card h3{
+  margin: .5rem 0;
 }
