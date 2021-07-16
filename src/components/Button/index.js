@@ -1,10 +1,11 @@
-import Style from './style.module.css'
+import Style from "./style.module.css";
 
-const Button = ({ children, ...props }) => {
+const Button = ({ children, to, ...props }) => {
   return (
     <button
       {...props}
-      className={Style.Button}
+      onClick={() => window.open(to)}
+      className={`${Style.Button}`}
     >
       {children}
     </button>

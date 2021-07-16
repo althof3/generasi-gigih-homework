@@ -1,7 +1,5 @@
-const TrackTitle = ({children}) => {
-  return (
-    <h3>{children}</h3>
-  )
-}
+const TrackTitle = ({ children, ...props }) => {
+  return <h3 {...props}>{children}</h3>;
+};
 
-export default TrackTitle
+export default TrackTitle;
