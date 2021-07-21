@@ -1,0 +1,20 @@
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card__image {
+  border-radius: 0.3rem;
+  object-fit: contain;
+  width: 100%;
+}
+
+.card__artist {
+  color: rgb(196, 196, 196);
+}
+
+.card__album {
+  color: #b3b3b3;
+}
