@@ -1,9 +1,4 @@
 .App {
   text-align: center;
-}
-
-.Card-Wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  padding: 0 1rem;
 }

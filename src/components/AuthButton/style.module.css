@@ -1,0 +1,21 @@
+.profile {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  width: fit-content;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: #444444;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.profile img {
+  object-fit: contain;
+  width: 46px;
+  border-radius: 50%;
+}
+
+.profile button {
+  margin-top: unset;
+}
