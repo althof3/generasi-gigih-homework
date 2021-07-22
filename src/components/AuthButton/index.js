@@ -1,4 +1,5 @@
-import { getToken } from "utils";
+/* eslint-disable no-restricted-globals */
+import { getToken, popupCenter } from "utils";
 import { loginApi, logoutApi, profileApi } from "api/endpoints";
 import Button from "components/Button";
 import axios from "axios";
@@ -9,7 +10,7 @@ const AuthButton = ({ authHeader, setAuthHeader }) => {
   const [profile, setProfile] = useState(null);
 
   const loginSpotify = () => {
-    const opener = window.open(loginApi, "_blank", "resizable=yes");
+    const opener = popupCenter(loginApi);
 
     let checkTokenUrl;
     const getTokenInterval = setInterval(() => {
@@ -28,7 +29,7 @@ const AuthButton = ({ authHeader, setAuthHeader }) => {
   };
 
   const logoutSpotify = () => {
-    const opener = window.open(logoutApi, "_blank", "resizable=yes");
+    const opener = popupCenter(logoutApi);
 
     const logoutInterval = setInterval(() => {
       setAuthHeader(null);

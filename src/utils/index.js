@@ -27,3 +27,24 @@ export const getToken = (opener) => {
   }
   return { token, type };
 };
+
+export const popupCenter = (url) => {
+  const w = 500;
+  const h = 580;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const left = (width - w) / 2;
+  const top = (height - h) / 4;
+
+  const newWindow = window.open(
+    url,
+    "_blank",
+    `scrollbars=yes,
+    width=${w}, 
+    height=${h}, 
+    top=${top}, 
+    left=${left}`
+  );
+
+  return newWindow
+};
