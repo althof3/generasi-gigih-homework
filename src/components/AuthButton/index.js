@@ -9,19 +9,16 @@ const AuthButton = ({ authHeader, setAuthHeader }) => {
 
   const loginSpotify = async () => {
     const { token, type } = await loginPopUp();
-    setAuthHeader(`${type} ${token}`);
-    handleProfile(`${type} ${token}`);
+    const newToken = `${type} ${token}`;
+    const profile = await fetchProfile(newToken);
+    setAuthHeader(newToken);
+    setProfile(profile);
   };
 
   const logoutSpotify = async () => {
     await logoutPopUp();
     setAuthHeader(null);
     setProfile(null);
-  };
-
-  const handleProfile = async (bearerToken) => {
-    const profile = await fetchProfile(bearerToken);
-    setProfile(profile);
   };
 
   if (authHeader) {

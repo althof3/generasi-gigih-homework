@@ -1,7 +1,7 @@
 import axios from "axios";
-import { profileApi, searchTracks, loginApi, logoutApi, } from "api/endpoints";
-import { popupCenter } from 'utils';
-import { getToken } from 'utils';
+import { profileApi, searchTracks, loginApi, logoutApi } from "api/endpoints";
+import { popupCenter } from "utils";
+import { getToken } from "utils";
 
 export const fetchTracks = (query = "Bohemian Rhapsody", header) => {
   const tracks = new Promise((resolve) => {
@@ -24,45 +24,43 @@ export const fetchTracks = (query = "Bohemian Rhapsody", header) => {
 };
 
 export const fetchProfile = (bearerToken) => {
-  const profile = new Promise((resolve)=>{
-
+  const profile = new Promise((resolve) => {
     const res = axios.get(profileApi, {
       headers: {
         Authorization: bearerToken,
       },
     });
-    
-    res.then(result => {
-      const {
-        display_name: name,
-        images: [img],
-      } =  result.data;
-      resolve({name, img})
-    }).catch(err => {
-      resolve('error')
-    })
-  })
 
-  return profile
+    res
+      .then((result) => {
+        const {
+          display_name: name,
+          images: [img],
+        } = result.data;
+        resolve({ name, img });
+      })
+      .catch((err) => {
+        resolve("error");
+      });
+  });
+
+  return profile;
 };
 
 export const logoutPopUp = () => {
-
-  const logout = new Promise((resolve)=>{
+  const logout = new Promise((resolve) => {
     const opener = popupCenter(logoutApi);
 
     const logoutInterval = setInterval(() => {
-      
       clearInterval(logoutInterval);
       opener.close();
-      resolve()
+      resolve();
     }, 500);
-  })
-  return logout
-}
+  });
+  return logout;
+};
 
 export const loginPopUp = () => {
-
   const login = new Promise((resolve) => {
     const opener = popupCenter(loginApi);
 
@@ -76,10 +74,10 @@ export const loginPopUp = () => {
         const { token, type } = getToken(opener);
         clearInterval(getTokenInterval);
         opener.close();
-        resolve({token, type})
+        resolve({ token, type });
       }
     }, 100);
-  })
+  });
 
-  return login
-}
+  return login;
+};
