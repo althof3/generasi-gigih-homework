@@ -1,5 +1,3 @@
-// import { searchTracks } from "api/endpoints";
-// import axios from "axios";
 import { useState } from "react";
 import Button from "components/Button";
 import style from "./style.module.css";
