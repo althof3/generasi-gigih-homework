@@ -18,3 +18,10 @@
 .card__album {
   color: #b3b3b3;
 }
+
+.selected{
+  background: #7e7e7e;
+}
+.selected:hover{
+  background: #979797;
+}

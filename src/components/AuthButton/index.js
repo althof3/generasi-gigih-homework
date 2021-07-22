@@ -1,61 +1,27 @@
-/* eslint-disable no-restricted-globals */
-import { getToken, popupCenter } from "utils";
-import { loginApi, logoutApi, profileApi } from "api/endpoints";
 import Button from "components/Button";
-import axios from "axios";
 import { useState } from "react";
 import style from "./style.module.css";
+import { fetchProfile } from "api/services";
+import { logoutPopUp, loginPopUp } from "api/services";
 
 const AuthButton = ({ authHeader, setAuthHeader }) => {
   const [profile, setProfile] = useState(null);
 
-  const loginSpotify = () => {
-    const opener = popupCenter(loginApi);
-
-    let checkTokenUrl;
-    const getTokenInterval = setInterval(() => {
-      try {
-        checkTokenUrl = opener.location.href.includes("access_token");
-      } catch (error) {}
-
-      if (checkTokenUrl) {
-        const { token, type } = getToken(opener);
-        setAuthHeader(`${type} ${token}`);
-        fetchProfile(`${type} ${token}`);
-        clearInterval(getTokenInterval);
-        opener.close();
-      }
-    }, 100);
+  const loginSpotify = async () => {
+    const { token, type } = await loginPopUp();
+    setAuthHeader(`${type} ${token}`);
+    handleProfile(`${type} ${token}`);
   };
 
-  const logoutSpotify = () => {
-    const opener = popupCenter(logoutApi);
-
-    const logoutInterval = setInterval(() => {
-      setAuthHeader(null);
-      clearInterval(logoutInterval);
-      setProfile(null);
-      opener.close();
-    }, 500);
+  const logoutSpotify = async () => {
+    await logoutPopUp();
+    setAuthHeader(null);
+    setProfile(null);
   };
 
-  const fetchProfile = async (bearerToken) => {
-    try {
-      const res = await axios.get(profileApi, {
-        headers: {
-          Authorization: bearerToken,
-        },
-      });
-
-      const {
-        display_name: name,
-        images: [img],
-      } = await res.data;
-
-      setProfile({ name, img });
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleProfile = async (bearerToken) => {
+    const profile = await fetchProfile(bearerToken);
+    setProfile(profile);
   };
 
   if (authHeader) {

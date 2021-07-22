@@ -1,24 +1,17 @@
-import { searchTracks } from "api/endpoints";
-import axios from "axios";
+// import { searchTracks } from "api/endpoints";
+// import axios from "axios";
 import { useState } from "react";
 import Button from "components/Button";
 import style from "./style.module.css";
+import { fetchTracks } from "api/services";
+
 
 const SearchBar = ({ authHeader, setTracks }) => {
   const [search, setSearch] = useState("");
 
   const getTracks = async (query) => {
-    try {
-      const res = await axios.get(searchTracks(query), {
-        headers: {
-          Authorization: authHeader,
-        },
-      });
-      const trackList = await res.data.tracks.items;
-      setTracks(trackList);
-    } catch (error) {
-      alert(error.message);
-    }
+    const tracks = await fetchTracks(query, authHeader)
+    setTracks(tracks);
   };
 
   const handleInput = (e) => {

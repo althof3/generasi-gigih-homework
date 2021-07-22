@@ -1,4 +1,4 @@
-export const trackDestruction = (data) => {
+export const trackDetail = (data) => {
   const {
     album: {
       images: [imgObj],
@@ -8,9 +8,10 @@ export const trackDestruction = (data) => {
     external_urls: { spotify },
     name: title,
     id,
+    uri
   } = data;
 
-  return { id, title, artist, albumName, imgObj, spotify };
+  return { id, title, artist, albumName, imgObj, spotify, uri };
 };
 
 export const getToken = (opener) => {
