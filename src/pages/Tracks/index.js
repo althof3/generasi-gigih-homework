@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AuthButton from "components/AuthButton";
 import SearchBar from "components/SearchBar";
 import TrackList from "components/TrackList";
@@ -28,13 +28,6 @@ const Tracks = () => {
   const [selected, setSelected] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState(initialForm);
-
-  useEffect(() => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      isValid: prevForm.desc.isValid && prevForm.title.isValid,
-    }));
-  }, [form.desc.isValid, form.desc.isValid]);
 
   const resetModalForm = () => {
     setIsOpen(false);
@@ -82,6 +75,7 @@ const Tracks = () => {
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             form={form}
+            setForm={setForm}
           />
         </Modal>
       )}

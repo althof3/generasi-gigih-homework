@@ -45,7 +45,6 @@ export const fetchProfile = (bearerToken) => {
           images: [img],
           id,
         } = result.data;
-        console.log(result.data);
         resolve({ id, name, img });
       })
       .catch((err) => {

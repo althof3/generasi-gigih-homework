@@ -1,8 +1,17 @@
+import { useEffect } from "react";
 import style from "./style.module.css";
 import Button from "components/Button";
 import { InputText, InputTextArea } from "components/Forms";
 
-const PlayListForm = ({ handleSubmit, handleChange, form }) => {
+const PlayListForm = ({ handleSubmit, handleChange, form, setForm }) => {
+  
+  useEffect(() => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      isValid: prevForm.desc.isValid && prevForm.title.isValid,
+    }));
+  }, [setForm, form.desc.isValid, form.desc.isValid]);
+
   return (
     <div className={style.form}>
       <h2>Add Playlist</h2>
