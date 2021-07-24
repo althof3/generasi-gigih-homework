@@ -1,0 +1,40 @@
+.input__wrapper {
+  margin: 0 auto 1rem;
+}
+
+.form__error {
+  color: #ff3a3a;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 3.5rem;
+}
+
+.input__error {
+  border: 1px #ff3a3a solid !important;
+}
+
+.input__wrapper input,
+.input__wrapper textarea {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background: #ffffff1a;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  resize: none;
+  border-radius: 0.5rem;
+  outline: none;
+  border: 1px #ffffff00 solid;
+  width: 100%;
+  max-width: 250px;
+}
+
+.input__wrapper input:focus,
+.input__wrapper textarea:focus {
+  border: 1px #1db954 solid;
+}
+
+.input__wrapper label {
+  text-align: left;
+}

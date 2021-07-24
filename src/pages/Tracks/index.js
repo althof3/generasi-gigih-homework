@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AuthButton from "components/AuthButton";
 import SearchBar from "components/SearchBar";
 import TrackList from "components/TrackList";
@@ -18,6 +18,7 @@ const initialForm = {
     isValid: true,
     min: 20,
   },
+  isValid: false,
 };
 
 const Tracks = () => {
@@ -27,6 +28,13 @@ const Tracks = () => {
   const [selected, setSelected] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState(initialForm);
+
+  useEffect(() => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      isValid: prevForm.desc.isValid && prevForm.title.isValid,
+    }));
+  }, [form.desc.isValid, form.desc.isValid]);
 
   const resetModalForm = () => {
     setIsOpen(false);
@@ -53,6 +61,7 @@ const Tracks = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     const validation = value.length >= form[name].min;
+
     setForm({
       ...form,
       [name]: {
