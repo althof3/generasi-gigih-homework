@@ -17,13 +17,22 @@ const TrackList = ({ tracks, selected, setSelected }) => {
 
     return (
       <Card key={id}>
-        <img className={style.card__image} src={imgObj.url} alt={title} />
-        <h3>{title}</h3>
-        <p className={style.card__artist}>👨‍🎤 {artist.name}</p>
+        <div className={style.card__detailWrapper}>
+          <img className={style.card__image} src={imgObj.url} alt={title} />
+          <div>
+            <h3>{title}</h3>
+            <p className={style.card__artist}>👨‍🎤 {artist.name}</p>
+          </div>
+        </div>
         <p className={style.card__album}>🎶 {albumName}</p>
-        <Button onClick={handleSelect} additionalStyle={isSelected && style.selected}>
-          {isSelected ? "Deselect" : "Select"}
-        </Button>
+        <div className={style.card__button}>
+          <Button
+            onClick={handleSelect}
+            additionalStyle={isSelected && style.selected}
+          >
+            {isSelected ? "Deselect" : "Select"}
+          </Button>
+        </div>
       </Card>
     );
   });

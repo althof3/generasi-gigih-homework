@@ -1,18 +1,20 @@
 .Card {
   font-weight: 500;
   background: #444444;
-  max-width: 250px;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.3rem;
   transition: all 0.25s ease-in-out;
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
+  height: fit-content;
 }
 
 .Card:hover {
   background: #4e4e4e;
-  transform: scale(1.02);
+  transform: scale(1.005);
 }
 
 .Card p {

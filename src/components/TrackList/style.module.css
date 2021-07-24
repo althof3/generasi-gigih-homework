@@ -1,14 +1,19 @@
 .cardWrapper {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  padding: 1.5rem 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
-
+.card__detailWrapper {
+  display: flex;
+  flex: 3;
+  gap: 0.5rem;
+}
 .card__image {
   border-radius: 0.3rem;
   object-fit: contain;
-  width: 100%;
+  max-height: 80px;
 }
 
 .card__artist {
@@ -17,11 +22,17 @@
 
 .card__album {
   color: #b3b3b3;
+  flex: 2;
 }
 
-.selected{
+.card__button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.selected {
   background: #7e7e7e;
 }
-.selected:hover{
+.selected:hover {
   background: #979797;
 }

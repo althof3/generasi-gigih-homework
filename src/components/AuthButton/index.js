@@ -1,18 +1,19 @@
 import Button from "components/Button";
-import { useState } from "react";
 import style from "./style.module.css";
 import { fetchProfile } from "api/services";
 import { logoutPopUp, loginPopUp } from "api/services";
 
-const AuthButton = ({ authHeader, setAuthHeader }) => {
-  const [profile, setProfile] = useState(null);
-
+const AuthButton = ({ authHeader, setAuthHeader, profile, setProfile }) => {
   const loginSpotify = async () => {
-    const { token, type } = await loginPopUp();
-    const newToken = `${type} ${token}`;
-    const profile = await fetchProfile(newToken);
-    setAuthHeader(newToken);
-    setProfile(profile);
+    try {
+      const { token, type } = await loginPopUp();
+      const newToken = `${type} ${token}`;
+      const profile = await fetchProfile(newToken);
+      setAuthHeader(newToken);
+      setProfile(profile);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const logoutSpotify = async () => {
