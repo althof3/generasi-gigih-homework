@@ -10,7 +10,7 @@ const PlayListForm = ({ handleSubmit, handleChange, form, setForm }) => {
       ...prevForm,
       isValid: prevForm.desc.isValid && prevForm.title.isValid,
     }));
-  }, [setForm, form.desc.isValid, form.desc.isValid]);
+  }, [setForm, form.title.isValid, form.desc.isValid]);
 
   return (
     <div className={style.form}>
