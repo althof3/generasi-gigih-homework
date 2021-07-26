@@ -10,7 +10,7 @@ import {
 import { popupCenter } from "utils";
 import { getToken } from "utils";
 
-export const fetchTracks = (query = "Bohemian Rhapsody", header) => {
+export const fetchTracks = (query, header) => {
   const tracks = new Promise((resolve, reject) => {
     const res = axios.get(searchTracks(query), {
       headers: {

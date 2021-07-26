@@ -1,23 +1,17 @@
 import { useState } from "react";
 import Button from "components/Button";
 import style from "./style.module.css";
-import { fetchTracks } from "api/services";
+import useService from "hooks/useService";
 
-const SearchBar = ({ authHeader, setTracks }) => {
+const SearchBar = ({ setTracks }) => {
+
   const [search, setSearch] = useState("");
-
-  const getTracks = async (query) => {
-    try {
-      const tracks = await fetchTracks(query, authHeader);
-      setTracks(tracks);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  const handleInput = (e) => {
+  const client = useService();
+  
+  const handleInput = async(e) => {
     e.preventDefault();
-    getTracks(search);
+    const tracks = await client.getTracks(search);
+    setTracks(tracks);
   };
 
   const handleChange = (e) => {
@@ -27,7 +21,6 @@ const SearchBar = ({ authHeader, setTracks }) => {
   return (
     <form className={style.formBar} onSubmit={handleInput}>
       <input
-        placeholder="Bohemian"
         className={style.inputBar}
         type="text"
         value={search}
