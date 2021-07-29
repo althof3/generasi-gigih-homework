@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "redux/AuthSlice";
 import { useHistory } from "react-router-dom";
 
-const useSpotifyApi = () => { // ganti jdi useSpotifyApi
+const useSpotifyApi = () => {
   const { token, profile } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let history = useHistory()

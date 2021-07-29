@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import AuthButton from "components/AuthButton";
 import SearchBar from "components/SearchBar";
 import TrackList from "components/TrackList";
 import useSpotifyApi from "hooks/useSpotifyApi";
