@@ -3,16 +3,10 @@
 html {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Poppins" !important;
   background: #171717;
   color: #ededed;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }

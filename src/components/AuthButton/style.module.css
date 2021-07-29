@@ -19,3 +19,12 @@
 .profile button {
   margin-top: unset;
 }
+
+.auth_button{
+  background: #444444;
+}
+
+.auth_button:hover{
+  background: #686868;
+  
+}

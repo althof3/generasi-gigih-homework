@@ -1,12 +1,12 @@
 import Button from "components/Button";
 import style from "./style.module.css";
-import useService from "hooks/useService";
+import useSpotifyApi from "hooks/useSpotifyApi";
 import { useSelector } from "react-redux";
 
 const AuthButton = () => {
   
   const { profile } = useSelector((state) => state.auth);
-  const client = useService();
+  const client = useSpotifyApi();
 
   const login = () => {
     client.loginSpotify();
@@ -25,7 +25,7 @@ const AuthButton = () => {
       </div>
     );
   }
-  return <Button onClick={login}>🔐 Login</Button>;
+  return <Button additionalStyle={style.auth_button} onClick={login}>🔐 Login</Button>;
 };
 
 export default AuthButton;

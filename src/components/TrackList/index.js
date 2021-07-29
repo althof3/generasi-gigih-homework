@@ -2,16 +2,22 @@ import { trackDetail } from "utils";
 import Card from "./../Card/index";
 import Button from "components/Button";
 import style from "./style.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addSelected, removeSelected } from "redux/TrackSlice";
 
-const TrackList = ({ tracks, selected, setSelected }) => {
+const TrackList = ({ tracks }) => {
+
+  const dispatch = useDispatch()
+  const {selectedTracks} = useSelector(state => state.tracks)
+
   const songTracks = tracks?.map((track) => {
     const { id, title, artist, albumName, imgObj, uri } = trackDetail(track);
-    const isSelected = selected.includes(uri);
+    const isSelected = selectedTracks.includes(uri);
     const handleSelect = () => {
       if (isSelected) {
-        setSelected((prev) => [...prev.filter((currUri) => currUri !== uri)]);
+        dispatch(removeSelected(uri))
       } else {
-        setSelected((prev) => [...prev, uri]);
+        dispatch(addSelected(uri))
       }
     };
 

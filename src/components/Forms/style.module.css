@@ -1,12 +1,12 @@
 .input__wrapper {
   margin: 0 auto 1rem;
+  width: fit-content;
 }
 
 .form__error {
   color: #ff3a3a;
   font-weight: 600;
   text-align: left;
-  margin-left: 3.5rem;
 }
 
 .input__error {
@@ -26,8 +26,8 @@
   border-radius: 0.5rem;
   outline: none;
   border: 1px #ffffff00 solid;
-  width: 100%;
-  max-width: 250px;
+  max-width: 550px;
+  min-width: 280px;
 }
 
 .input__wrapper input:focus,

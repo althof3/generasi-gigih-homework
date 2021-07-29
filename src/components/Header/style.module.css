@@ -1,0 +1,27 @@
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1db954;
+  color: white;
+  display: flex;
+  z-index: 1000;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem 1rem;
+}
+
+.nav__item{
+  display: flex;
+}
+
+.nav__action{
+  display: flex;
+}
+
+.nav_link{
+  color: white;
+  text-decoration: none;
+  margin-inline: 1rem;
+}

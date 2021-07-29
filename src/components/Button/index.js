@@ -13,7 +13,7 @@ const Button = ({ children, to, additionalStyle, ...props }) => {
     );
   }
   return (
-    <button {...props} className={`${Style.Button} ${additionalStyle}`}>
+    <button {...props} className={`${Style.Button} ${additionalStyle ?? ''}`}>
       {children}
     </button>
   );

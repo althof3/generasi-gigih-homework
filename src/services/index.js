@@ -6,19 +6,19 @@ import {
   logoutApi,
   playlistApi,
   addTracksApi,
-} from "api/endpoints";
+} from "api";
 import { popupCenter } from "utils";
 import { getToken } from "utils";
 
 export const fetchTracks = (query, header) => {
   const tracks = new Promise((resolve, reject) => {
-    const res = axios.get(searchTracks(query), {
+    const response = axios.get(searchTracks(query), {
       headers: {
         Authorization: header,
       },
     });
 
-    res
+    response
       .then((result) => {
         resolve(result.data.tracks.items);
       })
@@ -32,13 +32,13 @@ export const fetchTracks = (query, header) => {
 
 export const fetchProfile = (bearerToken) => {
   const profile = new Promise((resolve, reject) => {
-    const res = axios.get(profileApi, {
+    const response = axios.get(profileApi, {
       headers: {
         Authorization: bearerToken,
       },
     });
 
-    res
+    response
       .then((result) => {
         const {
           display_name: name,
@@ -57,13 +57,13 @@ export const fetchProfile = (bearerToken) => {
 
 export const createPlaylist = (user_id, data, header) => {
   const newPlaylist = new Promise((resolve, reject) => {
-    const res = axios.post(playlistApi(user_id), data, {
+    const response = axios.post(playlistApi(user_id), data, {
       headers: {
         Authorization: header,
       },
     });
 
-    res
+    response
       .then((result) => {
         const { id, name, description } = result.data;
         const playlist = { id, name, description };
@@ -79,13 +79,13 @@ export const createPlaylist = (user_id, data, header) => {
 
 export const addToPlaylist = (playlist_id, tracks, header) => {
   const newPlaylist = new Promise((resolve, reject) => {
-    const res = axios.post(addTracksApi(playlist_id, tracks), null, {
+    const response = axios.post(addTracksApi(playlist_id, tracks), null, {
       headers: {
         Authorization: header,
       },
     });
 
-    res
+    response
       .then((result) => {
         resolve();
       })
@@ -116,14 +116,18 @@ export const loginPopUp = () => {
 
     let checkTokenUrl;
     const getTokenInterval = setInterval(() => {
+      if (opener.closed) {
+        clearInterval(getTokenInterval);
+      }
+
       try {
         checkTokenUrl = opener.location.href.includes("access_token");
       } catch (error) {}
 
       if (checkTokenUrl) {
         const { token, type } = getToken(opener);
-        clearInterval(getTokenInterval);
         opener.close();
+        clearInterval(getTokenInterval);
         resolve({ token, type });
       }
     }, 100);

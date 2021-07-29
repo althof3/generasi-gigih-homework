@@ -1,11 +1,16 @@
 import "./App.css";
-import Tracks from "pages/Tracks";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "pages/routes";
+import Header from "components/Header";
 
 function App() {
   return (
-    <div className="App">
-      <Tracks />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes />
+      </div>
+    </Router>
   );
 }
 

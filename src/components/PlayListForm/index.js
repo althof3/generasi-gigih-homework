@@ -14,7 +14,6 @@ const PlayListForm = ({ handleSubmit, handleChange, form, setForm }) => {
 
   return (
     <div className={style.form}>
-      <h2>Add Playlist</h2>
       <form onSubmit={handleSubmit}>
         <InputText
           autoComplete="off"
@@ -40,7 +39,7 @@ const PlayListForm = ({ handleSubmit, handleChange, form, setForm }) => {
           type="submit"
           disabled={!form.isValid}
         >
-          SAVE
+          Create
         </Button>
       </form>
     </div>

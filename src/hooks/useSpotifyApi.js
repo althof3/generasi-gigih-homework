@@ -5,13 +5,15 @@ import {
   createPlaylist,
   loginPopUp,
   logoutPopUp,
-} from "api/services";
+} from "services";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "redux/AuthSlice";
+import { useHistory } from "react-router-dom";
 
-const useService = () => {
+const useSpotifyApi = () => { // ganti jdi useSpotifyApi
   const { token, profile } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  let history = useHistory()
 
   const client = {
     loginSpotify: async () => {
@@ -20,6 +22,7 @@ const useService = () => {
         const newToken = `${type} ${token}`;
         const profile = await fetchProfile(newToken);
         dispatch(login({ profile, newToken }));
+        history.push('/create-playlist')
       } catch (error) {
         alert(error);
       }
@@ -53,4 +56,4 @@ const useService = () => {
   return client;
 };
 
-export default useService;
+export default useSpotifyApi;
