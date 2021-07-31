@@ -57,15 +57,12 @@ const CreatePlaylist = () => {
   return (
     <div>
       <h1>Create Playlist</h1>
-
-      {/* <div style={{ margin: "auto" }}> */}
         <PlayListForm
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           form={form}
           setForm={setForm}
         />
-      {/* </div> */}
     </div>
   );
 };
