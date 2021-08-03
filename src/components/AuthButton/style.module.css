@@ -1,15 +1,19 @@
 .profile {
-  display: flex;
-  margin: auto;
-  align-items: center;
-  width: fit-content;
-  flex-wrap: wrap;
+  display: grid;
   gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+
+  margin: auto;
+  width: fit-content;
   background: #444444;
   padding: 0 0.5rem;
   border-radius: 0.5rem;
 }
 
+.profile div {
+  display: flex;
+}
 .profile img {
   object-fit: contain;
   width: 46px;
@@ -18,6 +22,7 @@
 
 .profile button {
   margin-top: unset;
+  /* height: fit-content; */
 }
 
 .auth_button{
