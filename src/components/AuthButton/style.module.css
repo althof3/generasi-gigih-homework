@@ -22,14 +22,12 @@
 
 .profile button {
   margin-top: unset;
-  /* height: fit-content; */
 }
 
-.auth_button{
+.auth_button {
   background: #444444;
 }
 
-.auth_button:hover{
+.auth_button:hover {
   background: #686868;
-  
 }
