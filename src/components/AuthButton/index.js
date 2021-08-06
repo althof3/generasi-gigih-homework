@@ -2,6 +2,7 @@ import Button from "components/Button";
 import style from "./style.module.css";
 import useSpotifyApi from "hooks/useSpotifyApi";
 import { useSelector } from "react-redux";
+import { StyledProfile } from "./style";
 
 const AuthButton = () => {
   const { profile } = useSelector((state) => state.auth);
@@ -17,13 +18,13 @@ const AuthButton = () => {
 
   if (!!profile) {
     return (
-      <div className={style.profile}>
+      <StyledProfile>
         <div>
           <img src={profile.img.url} alt={profile.name} />
           <p>{profile.name}</p>
         </div>
         <Button onClick={logout}>📤 Logout</Button>
-      </div>
+      </StyledProfile>
     );
   }
   return (

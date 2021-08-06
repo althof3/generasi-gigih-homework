@@ -1,38 +1,57 @@
-import style from "./style.module.css";
+import {
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Textarea,
+} from "@chakra-ui/react";
 
-export const InputText = ({ isValid, name, label, value, ...props }) => {
+export const InputText = ({
+  register,
+  rules,
+  name,
+  label,
+  errors,
+  ...props
+}) => {
   return (
-    <div className={style.input__wrapper}>
-      <label htmlFor={name}>{label}</label>
-      <input
-        {...props}
-        value={value}
+    <FormControl id={name} isInvalid={errors[name]}>
+      <FormLabel>{label}</FormLabel>
+      <Input
+        focusBorderColor="green.500"
         id={name}
+        {...props}
         name={name}
-        type="text"
-        className={!isValid ? style.input__error : ""}
+        {...register(name, rules)}
       />
-      {!isValid && (
-        <div className={style.form__error}>{label} is too short 😟</div>
-      )}
-    </div>
+      <FormErrorMessage>
+        {errors[name] && errors[name].message}
+      </FormErrorMessage>
+    </FormControl>
   );
 };
 
-export const InputTextArea = ({ isValid, name, label, value, ...props }) => {
+export const InputTextArea = ({
+  register,
+  rules,
+  name,
+  label,
+  errors,
+  ...props
+}) => {
   return (
-    <div className={style.input__wrapper}>
-      <label htmlFor={name}>{label}</label>
-      <textarea
-        {...props}
-        value={value}
+    <FormControl id={name} isInvalid={errors[name]}>
+      <FormLabel>{label}</FormLabel>
+      <Textarea
+        focusBorderColor="green.500"
         id={name}
+        {...props}
         name={name}
-        className={!isValid ? style.input__error : ""}
+        {...register(name, { ...rules })}
       />
-      {!isValid && (
-        <div className={style.form__error}>{label} is too short 😟</div>
-      )}
-    </div>
+      <FormErrorMessage>
+        {errors[name] && errors[name].message}
+      </FormErrorMessage>
+    </FormControl>
   );
 };

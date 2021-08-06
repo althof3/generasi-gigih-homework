@@ -1,45 +1,70 @@
-import { useEffect } from "react";
 import style from "./style.module.css";
-import Button from "components/Button";
 import { InputText, InputTextArea } from "components/Forms";
+import { Button } from "@chakra-ui/react";
+import { clearSelected } from "redux/TrackSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import useSpotifyApi from "hooks/useSpotifyApi";
 
-const PlayListForm = ({ handleSubmit, handleChange, form, setForm }) => {
-  
-  useEffect(() => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      isValid: prevForm.desc.isValid && prevForm.title.isValid,
-    }));
-  }, [setForm, form.title.isValid, form.desc.isValid]);
+const PlayListForm = () => {
+  const client = useSpotifyApi();
+  const dispatch = useDispatch();
+  const { selectedTracks } = useSelector((state) => state.tracks);
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  const onSubmit = (values) => {
+    return new Promise((resolve) => {
+      client.postPlaylist({ ...values, public: false }, selectedTracks);
+      reset();
+      dispatch(clearSelected());
+      resolve();
+    });
+  };
 
   return (
     <div className={style.form}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <InputText
           autoComplete="off"
-          onChange={handleChange}
-          value={form.title.value}
+          register={register}
           label="Title"
-          name="title"
-          required
-          isValid={form.title.isValid}
+          name="name"
+          errors={errors}
+          rules={{
+            required: "This is required",
+            minLength: {
+              value: 10,
+              message: "Minimum length should be 10",
+            },
+          }}
         />
         <InputTextArea
-          required
-          onChange={handleChange}
-          value={form.desc.value}
+          register={register}
           label="Description"
-          name="desc"
-          rows="3"
-          cols="50"
-          isValid={form.desc.isValid}
+          name="description"
+          errors={errors}
+          rules={{
+            required: "This is required",
+            minLength: {
+              value: 20,
+              message: "Minimum length should be 20",
+            },
+          }}
         />
+
         <Button
-          additionalStyle={!form.isValid ? style.btn__invalid : ""}
+          mt={4}
+          colorScheme="green"
+          isLoading={isSubmitting}
           type="submit"
-          disabled={!form.isValid}
         >
-          Create
+          Submit
         </Button>
       </form>
     </div>

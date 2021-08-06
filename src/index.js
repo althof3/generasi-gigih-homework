@@ -6,10 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "redux/store";
 import { Provider } from "react-redux";
 
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "Chakra";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
