@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface initialTypes {
+  selectedTracks: any[],
+  trackList: any[],
+}
+
+const initialState: initialTypes = {
   selectedTracks: [],
   trackList: [],
 };

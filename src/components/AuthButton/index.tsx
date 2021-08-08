@@ -1,7 +1,6 @@
 import Button from "components/Button";
 import style from "./style.module.css";
 import useSpotifyApi from "hooks/useSpotifyApi";
-import { useSelector } from "react-redux";
 import { StyledProfile } from "./style";
 import { useAppSelector } from "redux/hooks";
 

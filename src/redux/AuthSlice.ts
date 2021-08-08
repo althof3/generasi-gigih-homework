@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthSliceTypes {
-  token: string
+  token: string;
   profile: {
-    img: {url: string}
-    name: string
-    id: string
-  } | undefined
+    img: { url: string };
+    name: string;
+    id: string;
+  } | undefined;
 }
 const initialState: AuthSliceTypes = {
   token: "",

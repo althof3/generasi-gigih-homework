@@ -2,8 +2,7 @@ import style from "./style.module.css";
 import { InputText, InputTextArea } from "components/Forms";
 import { Button } from "@chakra-ui/react";
 import { clearSelected } from "redux/TrackSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import useSpotifyApi from "hooks/useSpotifyApi";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 
@@ -19,8 +18,8 @@ const PlayListForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (values) => {
-    return new Promise((resolve) => {
+  const onSubmit: SubmitHandler<{[key: string]: string}> = (values) => {
+    return new Promise<void>((resolve) => {
       client.postPlaylist({ ...values, public: false }, selectedTracks);
       reset();
       dispatch(clearSelected());
@@ -32,7 +31,6 @@ const PlayListForm: React.FC = () => {
     <div className={style.form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputText
-          autoComplete="off"
           register={register}
           label="Title"
           name="name"

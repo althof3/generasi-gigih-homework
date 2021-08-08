@@ -10,7 +10,7 @@ import {
 import { popupCenter } from "utils";
 import { getToken } from "utils";
 
-export const fetchTracks = (query, header) => {
+export const fetchTracks = (query: string, header: string) => {
   const tracks = new Promise((resolve, reject) => {
     const response = axios.get(searchTracks(query), {
       headers: {
@@ -30,8 +30,8 @@ export const fetchTracks = (query, header) => {
   return tracks;
 };
 
-export const fetchProfile = (bearerToken) => {
-  const profile = new Promise((resolve, reject) => {
+export const fetchProfile = (bearerToken: string): Promise<any> => {
+  const profile = new Promise<any>((resolve, reject) => {
     const response = axios.get(profileApi, {
       headers: {
         Authorization: bearerToken,
@@ -55,7 +55,11 @@ export const fetchProfile = (bearerToken) => {
   return profile;
 };
 
-export const createPlaylist = (user_id, data, header) => {
+export const createPlaylist = (
+  user_id: string | undefined,
+  data: { [key: string]: any },
+  header: string
+): { [key: string]: any } => {
   const newPlaylist = new Promise((resolve, reject) => {
     const response = axios.post(playlistApi(user_id), data, {
       headers: {
@@ -77,8 +81,8 @@ export const createPlaylist = (user_id, data, header) => {
   return newPlaylist;
 };
 
-export const addToPlaylist = (playlist_id, tracks, header) => {
-  const newPlaylist = new Promise((resolve, reject) => {
+export const addToPlaylist = (playlist_id: string, tracks: string[], header: string) => {
+  const newPlaylist = new Promise<void>((resolve, reject) => {
     const response = axios.post(addTracksApi(playlist_id, tracks), null, {
       headers: {
         Authorization: header,
@@ -110,28 +114,31 @@ export const logoutPopUp = () => {
   return logout;
 };
 
-export const loginPopUp: () => Promise<{[key: string]: string | null | undefined}> = () => {
-  const login: Promise<{[key: string]: string | null | undefined}> = new Promise((resolve) => {
-    const opener = popupCenter(loginApi);
+export const loginPopUp: () => Promise<{
+  [key: string]: string | null | undefined;
+}> = () => {
+  const login: Promise<{ [key: string]: string | null | undefined }> =
+    new Promise((resolve) => {
+      const opener = popupCenter(loginApi);
 
-    let checkTokenUrl: boolean | undefined;
-    const getTokenInterval = setInterval(() => {
-      if (opener?.closed) {
-        clearInterval(getTokenInterval);
-      }
+      let checkTokenUrl: boolean | undefined;
+      const getTokenInterval = setInterval(() => {
+        if (opener?.closed) {
+          clearInterval(getTokenInterval);
+        }
 
-      try {
-        checkTokenUrl = opener?.location.href.includes("access_token");
-      } catch (error) {}
+        try {
+          checkTokenUrl = opener?.location.href.includes("access_token");
+        } catch (error) {}
 
-      if (checkTokenUrl) {
-        const { token, type } = getToken(opener);
-        opener?.close();
-        clearInterval(getTokenInterval);
-        resolve({ token, type });
-      }
-    }, 100);
-  });
+        if (checkTokenUrl) {
+          const { token, type } = getToken(opener);
+          opener?.close();
+          clearInterval(getTokenInterval);
+          resolve({ token, type });
+        }
+      }, 100);
+    });
 
   return login;
 };

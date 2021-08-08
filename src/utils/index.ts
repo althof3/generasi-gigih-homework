@@ -1,4 +1,4 @@
-export const trackDetail = (data) => {
+export const trackDetail = (data: {[key: string]: any}) => {
   const {
     album: {
       images: [imgObj],
@@ -14,11 +14,11 @@ export const trackDetail = (data) => {
   return { id, title, artist, albumName, imgObj, spotify, uri };
 };
 
-export const getToken = (opener) => {
+export const getToken = (opener: Window | null) => {
   let token;
   let type;
 
-  const newUrl = String(opener.location.href).replace("#", "?");
+  const newUrl = String(opener?.location.href).replace("#", "?");
   const queryString = new URL(newUrl).search;
 
   if (queryString.length > 0) {

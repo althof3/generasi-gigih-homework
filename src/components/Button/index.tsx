@@ -1,11 +1,12 @@
 import Style from "./style.module.css";
 
-const Button: React.FC<{
-  children: string;
+interface props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   to?: string;
-  additionalStyle?: string;
-  onClick: () => void;
-}> = ({ children, to, additionalStyle, ...props }) => {
+  additionalStyle?: string | boolean;
+  onClick?: () => void;
+}
+
+const Button: React.FC<props> = ({ children, to, additionalStyle, ...props }) => {
   if (to) {
     return (
       <button

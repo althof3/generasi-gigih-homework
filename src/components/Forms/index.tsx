@@ -5,19 +5,29 @@ import {
   Input,
   Textarea,
 } from "@chakra-ui/react";
+import {
+  DeepMap,
+  FieldError,
+  FieldValues,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
 export const InputText: React.FC<{
-  register: (name: string, rules: { [key: string]: string }) => void;
-  rules: { [key: string]: string }
+  register: UseFormRegister<FieldValues>;
+  rules: RegisterOptions;
+  name: string;
+  label: string;
+  errors: DeepMap<FieldValues, FieldError>;
 }> = ({ register, rules, name, label, errors, ...props }) => {
   return (
-    <FormControl id={name} isInvalid={errors[name]}>
+    <FormControl id={name} isInvalid={!!errors[name]}>
       <FormLabel>{label}</FormLabel>
       <Input
         focusBorderColor="green.500"
         id={name}
         {...props}
-        name={name}
+        // name={name}
         {...register(name, rules)}
       />
       <FormErrorMessage>
@@ -27,14 +37,13 @@ export const InputText: React.FC<{
   );
 };
 
-export const InputTextArea: React.FC = ({
-  register,
-  rules,
-  name,
-  label,
-  errors,
-  ...props
-}) => {
+export const InputTextArea: React.FC<{
+  register: UseFormRegister<FieldValues>;
+  rules: RegisterOptions;
+  name: string;
+  label: string;
+  errors: DeepMap<FieldValues, FieldError>;
+}> = ({ register, rules, name, label, errors, ...props }) => {
   return (
     <FormControl id={name} isInvalid={errors[name]}>
       <FormLabel>{label}</FormLabel>
@@ -42,8 +51,8 @@ export const InputTextArea: React.FC = ({
         focusBorderColor="green.500"
         id={name}
         {...props}
-        name={name}
-        {...register(name, { ...rules })}
+        // name={name}
+        {...register(name, rules)}
       />
       <FormErrorMessage>
         {errors[name] && errors[name].message}

@@ -13,10 +13,10 @@ export const searchTracks = (query: string) =>
   `https://api.spotify.com/v1/search?q=${query}&type=track&market=ID&limit=10`;
 export const profileApi = "https://api.spotify.com/v1/me";
 
-export const playlistApi = (user_id: string) =>
+export const playlistApi = (user_id?: string) =>
   `https://api.spotify.com/v1/users/${user_id}/playlists`;
-  
-export const addTracksApi = (playlist_id: string, tracks: string) =>
+
+export const addTracksApi = (playlist_id: string, tracks: string[]) =>
   `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=${encodeURIComponent(
-    tracks
+    tracks.toString()
   )}`;

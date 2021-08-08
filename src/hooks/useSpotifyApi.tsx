@@ -6,7 +6,6 @@ import {
   loginPopUp,
   logoutPopUp,
 } from "services";
-import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "redux/AuthSlice";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -14,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 const useSpotifyApi = () => {
   const { token, profile } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  let history = useHistory()
+  let history = useHistory();
 
   const client = {
     loginSpotify: async () => {
@@ -23,7 +22,7 @@ const useSpotifyApi = () => {
         const token = `${type} ${newToken}`;
         const profile = await fetchProfile(token);
         dispatch(login({ profile, token }));
-        history.push('/create-playlist')
+        history.push("/create-playlist");
       } catch (error) {
         alert(error);
       }
@@ -34,7 +33,7 @@ const useSpotifyApi = () => {
       dispatch(logout());
     },
 
-    getTracks: async (query) => {
+    getTracks: async (query: string) => {
       try {
         const tracks = await fetchTracks(query, token);
         return tracks;
@@ -43,9 +42,9 @@ const useSpotifyApi = () => {
       }
     },
 
-    postPlaylist: async (reqBody, selected) => {
+    postPlaylist: async (reqBody: { [key: string]: any }, selected: string[]) => {
       try {
-        const { id, name } = await createPlaylist(profile.id, reqBody, token);
+        const { id, name } = await createPlaylist(profile?.id, reqBody, token);
         await addToPlaylist(id, selected, token);
         alert(`Tracks Added to ${name}`);
       } catch (error) {
