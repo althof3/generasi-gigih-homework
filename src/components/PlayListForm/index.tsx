@@ -5,11 +5,12 @@ import { clearSelected } from "redux/TrackSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import useSpotifyApi from "hooks/useSpotifyApi";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
-const PlayListForm = () => {
+const PlayListForm: React.FC = () => {
   const client = useSpotifyApi();
-  const dispatch = useDispatch();
-  const { selectedTracks } = useSelector((state) => state.tracks);
+  const dispatch = useAppDispatch();
+  const { selectedTracks } = useAppSelector((state) => state.tracks);
 
   const {
     handleSubmit,

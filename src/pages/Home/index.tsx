@@ -4,12 +4,13 @@ import TrackList from "components/TrackList";
 import useSpotifyApi from "hooks/useSpotifyApi";
 import { useDispatch, useSelector } from "react-redux";
 import { storeTracks } from "redux/TrackSlice";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 const Home = () => {
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const client = useSpotifyApi();
-  const {trackList} = useSelector((state) => state.tracks);
+  const {trackList} = useAppSelector((state) => state.tracks);
 
   const handleInput = async (e) => {
     e.preventDefault();

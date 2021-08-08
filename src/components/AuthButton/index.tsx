@@ -3,9 +3,10 @@ import style from "./style.module.css";
 import useSpotifyApi from "hooks/useSpotifyApi";
 import { useSelector } from "react-redux";
 import { StyledProfile } from "./style";
+import { useAppSelector } from "redux/hooks";
 
-const AuthButton = () => {
-  const { profile } = useSelector((state) => state.auth);
+const AuthButton: React.FC = () => {
+  const { profile } = useAppSelector((state) => state.auth);
   const client = useSpotifyApi();
 
   const login = () => {

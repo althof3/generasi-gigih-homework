@@ -98,35 +98,35 @@ export const addToPlaylist = (playlist_id, tracks, header) => {
 };
 
 export const logoutPopUp = () => {
-  const logout = new Promise((resolve) => {
+  const logout = new Promise<void>((resolve) => {
     const opener = popupCenter(logoutApi);
 
     const logoutInterval = setInterval(() => {
       clearInterval(logoutInterval);
-      opener.close();
+      opener?.close();
       resolve();
     }, 500);
   });
   return logout;
 };
 
-export const loginPopUp = () => {
-  const login = new Promise((resolve) => {
+export const loginPopUp: () => Promise<{[key: string]: string | null | undefined}> = () => {
+  const login: Promise<{[key: string]: string | null | undefined}> = new Promise((resolve) => {
     const opener = popupCenter(loginApi);
 
-    let checkTokenUrl;
+    let checkTokenUrl: boolean | undefined;
     const getTokenInterval = setInterval(() => {
-      if (opener.closed) {
+      if (opener?.closed) {
         clearInterval(getTokenInterval);
       }
 
       try {
-        checkTokenUrl = opener.location.href.includes("access_token");
+        checkTokenUrl = opener?.location.href.includes("access_token");
       } catch (error) {}
 
       if (checkTokenUrl) {
         const { token, type } = getToken(opener);
-        opener.close();
+        opener?.close();
         clearInterval(getTokenInterval);
         resolve({ token, type });
       }

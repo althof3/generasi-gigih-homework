@@ -3,7 +3,7 @@ import Button from "components/Button";
 import style from "./style.module.css";
 
 
-const SearchBar = ({ search, handleChange, handleInput }) => {
+const SearchBar: React.FC = ({ search, handleChange, handleInput }) => {
   return (
     <form className={style.formBar} onSubmit={handleInput}>
       <input

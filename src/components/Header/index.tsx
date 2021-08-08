@@ -2,7 +2,7 @@ import AuthButton from "components/AuthButton";
 import { Link } from "react-router-dom";
 import style from "./style.module.css";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div className={style.navbar}>
       <div className={style.nav__item}>

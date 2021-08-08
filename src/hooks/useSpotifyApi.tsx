@@ -9,19 +9,20 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "redux/AuthSlice";
 import { useHistory } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 
 const useSpotifyApi = () => {
-  const { token, profile } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { token, profile } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   let history = useHistory()
 
   const client = {
     loginSpotify: async () => {
       try {
-        const { token, type } = await loginPopUp();
-        const newToken = `${type} ${token}`;
-        const profile = await fetchProfile(newToken);
-        dispatch(login({ profile, newToken }));
+        const { token: newToken, type } = await loginPopUp();
+        const token = `${type} ${newToken}`;
+        const profile = await fetchProfile(token);
+        dispatch(login({ profile, token }));
         history.push('/create-playlist')
       } catch (error) {
         alert(error);

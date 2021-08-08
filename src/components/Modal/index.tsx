@@ -2,7 +2,7 @@ import style from "./style.module.css";
 import ReactDOM from "react-dom";
 import { useEffect } from "react";
 
-const Modal = ({ onClose, children }) => {
+const Modal: React.FC = ({ onClose, children }) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {

@@ -6,14 +6,10 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-export const InputText = ({
-  register,
-  rules,
-  name,
-  label,
-  errors,
-  ...props
-}) => {
+export const InputText: React.FC<{
+  register: (name: string, rules: { [key: string]: string }) => void;
+  rules: { [key: string]: string }
+}> = ({ register, rules, name, label, errors, ...props }) => {
   return (
     <FormControl id={name} isInvalid={errors[name]}>
       <FormLabel>{label}</FormLabel>
@@ -31,7 +27,7 @@ export const InputText = ({
   );
 };
 
-export const InputTextArea = ({
+export const InputTextArea: React.FC = ({
   register,
   rules,
   name,

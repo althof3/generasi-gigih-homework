@@ -1,6 +1,11 @@
 import Style from "./style.module.css";
 
-const Button = ({ children, to, additionalStyle, ...props }) => {
+const Button: React.FC<{
+  children: string;
+  to?: string;
+  additionalStyle?: string;
+  onClick: () => void;
+}> = ({ children, to, additionalStyle, ...props }) => {
   if (to) {
     return (
       <button
@@ -13,7 +18,7 @@ const Button = ({ children, to, additionalStyle, ...props }) => {
     );
   }
   return (
-    <button {...props} className={`${Style.Button} ${additionalStyle ?? ''}`}>
+    <button {...props} className={`${Style.Button} ${additionalStyle ?? ""}`}>
       {children}
     </button>
   );

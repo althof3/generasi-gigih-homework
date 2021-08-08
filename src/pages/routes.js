@@ -2,6 +2,7 @@ import Home from "pages/Home";
 import CreatePlaylist from "./CreatePlaylist";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "redux/hooks";
 
 const ROUTES = [
   { exact: true, path: "/", component: Home, auth: false },
@@ -20,7 +21,7 @@ const Routes = () => {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuth = useSelector((state) => !!state.auth.token);
+  const isAuth = useAppSelector((state) => !!state.auth.token);
 
   return (
     <Route

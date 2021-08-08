@@ -29,7 +29,7 @@ export const getToken = (opener) => {
   return { token, type };
 };
 
-export const popupCenter = (url) => {
+export const popupCenter: (url: string) => Window | null = (url) => {
   const w = 500;
   const h = 580;
   const width = window.innerWidth;
