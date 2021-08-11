@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface initialTypes {
-  selectedTracks: any[],
+interface TrackSliceTypes {
+  selectedTracks: string[],
   trackList: any[],
 }
 
-const initialState: initialTypes = {
+const initialState: TrackSliceTypes = {
   selectedTracks: [],
   trackList: [],
 };
@@ -19,7 +19,8 @@ export const tracksSlice = createSlice({
     },
 
     addSelected: (state, action) => {
-      state.selectedTracks = [...state.selectedTracks, action.payload];
+      const {selectedTracks} = state
+      state.selectedTracks = [...selectedTracks, action.payload];
     },
     removeSelected: (state, action) => {
       state.selectedTracks = [

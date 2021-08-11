@@ -18,7 +18,7 @@ const PlayListForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit: SubmitHandler<{[key: string]: string}> = (values) => {
+  const onSubmit: SubmitHandler<IPlaylistForm> = (values) => {
     return new Promise<void>((resolve) => {
       client.postPlaylist({ ...values, public: false }, selectedTracks);
       reset();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "components/SearchBar";
 import TrackList from "components/TrackList";
 import useSpotifyApi from "hooks/useSpotifyApi";
@@ -11,13 +11,13 @@ const Home = () => {
   const client = useSpotifyApi();
   const {trackList} = useAppSelector((state) => state.tracks);
 
-  const handleInput = async (e: { preventDefault: () => void; }) => {
+  const handleInput = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const tracks = await client.getTracks(search);
     dispatch(storeTracks(tracks));
   };
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
 

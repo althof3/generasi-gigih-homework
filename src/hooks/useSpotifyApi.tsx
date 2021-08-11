@@ -42,7 +42,7 @@ const useSpotifyApi = () => {
       }
     },
 
-    postPlaylist: async (reqBody: { [key: string]: any }, selected: string[]) => {
+    postPlaylist: async (reqBody: IPlaylistForm, selected: string[]) => {
       try {
         const { id, name } = await createPlaylist(profile?.id, reqBody, token);
         await addToPlaylist(id, selected, token);

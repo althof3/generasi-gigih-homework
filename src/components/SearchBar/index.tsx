@@ -1,11 +1,13 @@
 import Button from "components/Button";
 import style from "./style.module.css";
 
-const SearchBar: React.FC<{
+interface ISearchBar {
   search: string;
-  handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleInput: (e: React.FormEvent<HTMLFormElement>) => void;
-}> = ({ search, handleChange, handleInput }) => {
+}
+
+const SearchBar: React.FC<ISearchBar> = ({ search, handleChange, handleInput }) => {
   return (
     <form className={style.formBar} onSubmit={handleInput}>
       <input

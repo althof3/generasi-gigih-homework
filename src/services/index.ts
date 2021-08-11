@@ -57,10 +57,10 @@ export const fetchProfile = (bearerToken: string): Promise<any> => {
 
 export const createPlaylist = (
   user_id: string | undefined,
-  data: { [key: string]: any },
+  data: IPlaylistForm,
   header: string
-): { [key: string]: any } => {
-  const newPlaylist = new Promise((resolve, reject) => {
+): Promise<IPlaylist> => {
+  const newPlaylist = new Promise<IPlaylist>((resolve, reject) => {
     const response = axios.post(playlistApi(user_id), data, {
       headers: {
         Authorization: header,
@@ -70,7 +70,7 @@ export const createPlaylist = (
     response
       .then((result) => {
         const { id, name, description } = result.data;
-        const playlist = { id, name, description };
+        const playlist: IPlaylist = { id, name, description };
         resolve(playlist);
       })
       .catch((err) => {
